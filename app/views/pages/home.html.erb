@@ -1,4 +1,18 @@
 <div class="jumbotron text-center">
 	<h1>Welcome to my app!</h1>
-	<p><%= link_to "LOG IN", "#", class: "btn btn-default btn-lg" %> <%= link_to "SIGN UP", "#", class: "btn btn-primary btn-lg" %></p>
+	
+	<!-- If user is signed in -->
+	<% if user_signed_in? %> 
+		<h3>You are one swell user. </h3> 
+
+	<!-- Otherwise... login or sign up -->
+	<% else %>
+		<p>	<%= link_to "LOG IN", user_session_path, class: "btn btn-default btn-lg" %> 
+			<%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+		</p>
+
+	<!-- End conditional -->
+	<% end %>
+
+
 </div>
