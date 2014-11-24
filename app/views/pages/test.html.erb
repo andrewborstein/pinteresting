@@ -1,0 +1,16 @@
+<div class="jumbotron text-center">
+	<h1>Welcome to the test... page?</h1>
+	
+	<!-- If user is signed in -->
+	<% if user_signed_in? %> 
+		<h3>You're signed in. <em>BIG WHOOP.</em></h3> 
+
+	<!-- Otherwise... login or sign up -->
+	<% else %>
+		<h3>You're NOT signed in. <em>Wah wah wahhh.</em></h3> 
+
+	<!-- End conditional -->
+	<% end %>
+
+
+</div>
