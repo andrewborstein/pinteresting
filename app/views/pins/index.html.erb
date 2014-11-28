@@ -1,9 +1,10 @@
-<h1>List of Pins</h1>
+<h1>All the Pins</h1>
 
 <table>
   <thead>
     <tr>
       <th>Description</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,14 +13,27 @@
     <% @pins.each do |pin| %>
       <tr>
         <td><%= pin.description %></td>
-        <td><%= link_to 'Show', pin %></td>
-        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-        <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= pin.user.email if pin.user %></td>
+        <td>
+          <div class="btn-group">
+              <%= link_to 'Show', pin, class: "btn btn-default btn-sm" %>
+            <% if pin.user == current_user %>
+              <%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-default btn-sm" %>
+              <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-sm" %>
+            <% end %>
+          </div>
+        </td>      
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Pin', new_pin_path %>
+<% if user_signed_in? %>
+  <%= link_to 'Create New Pin', new_pin_path, class: "btn btn-primary" %>
+<% else %>
+  <h4> Want to pin things like all the cool kids? </h4>
+  <%= link_to "LOG IN", user_session_path, class: "btn btn-default" %> 
+  <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-primary" %>
+  </p>
+<% end %>
