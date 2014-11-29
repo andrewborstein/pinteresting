@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Description</th>
       <th>User</th>
       <th colspan="3"></th>
@@ -12,11 +13,14 @@
   <tbody>
     <% @pins.each do |pin| %>
       <tr>
+        <td><%= image_tag pin.image.url(:thumb), class: 'center-block img-responsive img-thumbnail', style: "height: auto; width: 100px" %></td>
         <td><%= pin.description %></td>
+        <!-- User's email address, if pin has user assigned -->
         <td><%= pin.user.email if pin.user %></td>
         <td>
           <div class="btn-group">
               <%= link_to 'Show', pin, class: "btn btn-default btn-sm" %>
+            <!-- Users can only Edit or Delete their own pins -->
             <% if pin.user == current_user %>
               <%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-default btn-sm" %>
               <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-sm" %>
@@ -29,11 +33,12 @@
 </table>
 
 <br>
+<!-- Users must be signed in to create pins -->
 <% if user_signed_in? %>
   <%= link_to 'Create New Pin', new_pin_path, class: "btn btn-primary" %>
+<!-- Otherwise... -->
 <% else %>
   <h4> Want to pin things like all the cool kids? </h4>
   <%= link_to "LOG IN", user_session_path, class: "btn btn-default" %> 
   <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-primary" %>
-  </p>
 <% end %>
