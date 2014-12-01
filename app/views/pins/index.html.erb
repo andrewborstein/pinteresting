@@ -11,9 +11,16 @@
   </thead>
 
   <tbody>
+    <!-- start pin loop, and for each pin do... -->
     <% @pins.each do |pin| %>
       <tr>
-        <td><%= image_tag pin.image.url(:thumb), class: 'center-block img-responsive img-thumbnail', style: "height: auto; width: 100px" %></td>
+        <td>
+          <!-- link to show pin, wrapped around element -->
+          <%= link_to pin do %>
+            <!-- <img> using pin image thumbnail -->
+            <%= image_tag pin.image.url(:thumb), class: 'center-block img-responsive img-thumbnail', style: "height: auto; width: 100px" %>
+          <% end %>
+        </td>
         <td><%= pin.description %></td>
         <!-- User's email address, if pin has user assigned -->
         <td><%= pin.user.email if pin.user %></td>
@@ -22,7 +29,9 @@
               <%= link_to 'Show', pin, class: "btn btn-default btn-sm" %>
             <!-- Users can only Edit or Delete their own pins -->
             <% if pin.user == current_user %>
+              <!-- link to edit pin -->
               <%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-default btn-sm" %>
+              <!-- link to delete pin, with necessary method, and confirmation dialog -->
               <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-sm" %>
             <% end %>
           </div>
