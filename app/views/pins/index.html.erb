@@ -31,17 +31,19 @@
         </div>
 
         <div class="panel-body">
-          <div class="row desc">
+          <div class="desc">
             <!-- Pin description -->
             <%= pin.description %>
           </div>
         </div>
         
         <div class="panel-footer">
-          <div class="row user">
-            <!-- User's email address, if pin has user assigned -->
-            <%= pin.user.email if pin.user %>
-          </div>  
+          <div class="col-xs-12">
+            <div class="row user">
+              <!-- User's email address, if pin has user assigned -->
+              Posted By: User <%= pin.user.id if pin.user %>
+            </div>  
+          </div>
           <div class="row actions">
             <div class="btn-group">
               <%= link_to 'Show', pin, class: "btn btn-default btn-sm" %>

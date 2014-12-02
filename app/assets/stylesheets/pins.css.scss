@@ -2,6 +2,7 @@
   margin-bottom: 20px;
   margin-top: 15px;
   clear: both;
+  max-width: 100%
 }
 
 /* Masonry Pin Container */
@@ -30,6 +31,9 @@
 /* Pin Descriptio Container */
 .desc {
 	padding: 15px 0;
+}
+.user {
+  padding-bottom: 10px;
 }
 
 .clearfix:before, .clearfix:after { content: ""; display: table; }
