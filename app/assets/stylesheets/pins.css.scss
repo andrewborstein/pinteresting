@@ -6,7 +6,7 @@
 }
 
 /* Masonry Pin Container */
-.pin {
+#pins .pin {
 	width: 285px;
 	@media screen and (max-width: 768px) { width: 100%; }
 	padding: 5px;
@@ -14,25 +14,26 @@
 }
 
 /* Actual Pin Container */
-.panel {
+#pins .panel {
 	margin: 0
 }
 
 /* Pin Image Container */
-.panel-header {
+#pins .panel-header,
+#pins .panel-body {
 	padding: 0
 }
 
 /* Pin Image  */
-.pin img {
+#pins .pin img {
 	border-radius: 4px 4px 0 0;
 }
 
 /* Pin Descriptio Container */
-.desc {
+#pins .desc {
 	padding: 15px 0;
 }
-.user {
+#pins .user {
   padding-bottom: 10px;
 }
 
