@@ -18,6 +18,13 @@ img:hover {
 	opacity: .7;
 }
 
-td, th {
-	padding: 5px 20px 5px 0;
+/* Pin Image Container */
+.panel-body {
+	padding: 0
 }
+
+/* Pin Descriptio Container */
+.desc {
+	padding: 15px 0;
+}
+
