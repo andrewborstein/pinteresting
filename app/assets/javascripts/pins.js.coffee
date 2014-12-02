@@ -5,7 +5,6 @@
 $ ->
   $("#pins").masonry
     itemSelector: '.pin',
-    isFitWidth: true,
-    columnWidth: 285
+    isFitWidth: true
 
   return
