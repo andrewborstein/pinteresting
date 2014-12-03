@@ -13,74 +13,77 @@
 </div>
 
 
-  <div id="pins" class="text-center transitions-enabled clearfix">
-    
-    <!-- start pin loop, and for each pin do... -->
-    <% @pins.each do |pin| %>
+<div id="pins" class="text-center transitions-enabled clearfix">
+  
+  <!-- start pin loop, and for each pin do... -->
+  <% @pins.each do |pin| %>
 
-    <div class="pin">
+  <div class="pin">
 
-      <div class="panel panel-default">
+    <div class="panel panel-default">
 
-        <div class="panel-header">
-          <div class="img">
+      <div class="panel-header">
+        <div class="img">
 
-            <!-- link to show pin, wrapped around... -->
-            <%= link_to pin, title: 'View Pin' do %>
-              
-              <!-- the pin image -->
-              <%= image_tag pin.image.url, class: 'center-block img-responsive' %>
-
-            <% end %><!-- /link to show pin -->
-              
-            <!-- Current users can only Edit or Delete their own pins -->
-            <% if pin.user == current_user %>
-              <div class="actions">
-                  <div class="btn-group btn-group-xs">
-                      <!-- link to edit pin -->
-                      <%= link_to edit_pin_path(pin), title: 'Edit Pin', class: 'btn btn-default' do %>
-                        <i class="fa fa-pencil"></i>
-                      <% end %> 
-                      <!-- link to delete pin, with necessary method, and confirmation dialog -->
-                      <%= link_to pin, title: 'Delete Pin', method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' do %>
-                        <i class="fa fa-trash"></i> 
-                      <% end %>
-                  </div>
-              </div>
-            <% end %><!-- /current user -->
-
+          <!-- link to show pin, wrapped around... -->
+          <%= link_to pin, title: 'View Pin' do %>
             
+            <!-- the pin image -->
+            <%= image_tag pin.image.url, class: 'center-block img-responsive' %>
 
-          </div><!-- /.img -->
-        </div><!-- /.panel-header -->
+          <% end %><!-- /link to show pin -->
+            
+          <!-- Current users can only Edit or Delete their own pins -->
+          <% if pin.user == current_user %>
+            <div class="actions">
+                <div class="btn-group btn-group-xs">
+                    <!-- link to edit pin -->
+                    <%= link_to edit_pin_path(pin), title: 'Edit Pin', class: 'btn btn-default' do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %> 
+                    <!-- link to delete pin, with necessary method, and confirmation dialog -->
+                    <%= link_to pin, title: 'Delete Pin', method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' do %>
+                      <i class="fa fa-trash"></i> 
+                    <% end %>
+                </div>
+            </div>
+          <% end %><!-- /current user -->
 
-        <div class="panel-body">
-          <div class="desc">
-            <!-- Pin description -->
-            <%= pin.description %>
-          </div>
-          <div class="user">
-            Posted by 
-              <!-- if pin belongs to you... -->
-              <% if pin.user == current_user %>
-                you!
-              <!-- otherwise... -->
-              <% else %>
-                <%= mail_to pin.user.email do %>  
-                  @user<%= pin.user.id if pin.user %>
-                <% end %>
-              <% end %>
-          </div>
+          
+
+        </div><!-- /.img -->
+      </div><!-- /.panel-header -->
+
+      <div class="panel-body">
+        <div class="desc">
+          <!-- Pin description -->
+          <%= pin.description %>
         </div>
-
+        <div class="user">
+          Posted by 
+            <!-- if pin belongs to you... -->
+            <% if pin.user == current_user %>
+              you!
+            <!-- otherwise... -->
+            <% else %>
+              <%= mail_to pin.user.email do %>  
+                @user<%= pin.user.id if pin.user %>
+              <% end %>
+            <% end %>
+        </div>
       </div>
 
     </div>
 
-    <% end %> 
-
   </div>
-        
+
+  <% end %> 
+
+</div>
+
+<div class="text-center col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-xs-12">
+  <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+</div>      
       
       
         
