@@ -3,8 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $("#pins").masonry
-    itemSelector: '.pin',
-    isFitWidth: true
-
-  return
+  $('#pins').imagesLoaded ->
+    $('#pins').masonry
+      itemSelector: '.pin'
+      isFitWidth: true
