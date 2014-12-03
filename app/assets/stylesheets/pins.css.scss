@@ -1,6 +1,5 @@
 #pins {
-  margin-bottom: 20px;
-  margin-top: 15px;
+  margin: 15px auto;
   clear: both;
   max-width: 100%
 }
@@ -14,28 +13,40 @@
 }
 
 /* Actual Pin Container */
-#pins .panel {
+.pin .panel {
 	margin: 0
 }
 
 /* Pin Image Container */
-#pins .panel-header,
-#pins .panel-body {
-	padding: 0
+.pin .panel-header {
+	padding: 0;
+  position: relative
 }
 
 /* Pin Image  */
-#pins .pin img {
+#pins .pin img,
+.pin img {
 	border-radius: 4px 4px 0 0;
+  -webkit-transition: .4s ease all;
+     -moz-transition: .4s ease all;
+          transition: .4s ease all;
+}
+#pins .pin img:hover {
+  opacity: .8;
 }
 
-/* Pin Descriptio Container */
-#pins .desc {
-	padding: 15px 0;
-}
-#pins .user {
-  padding-bottom: 10px;
+/* Pin User Container */
+.pin .user {
   font-size: 11px;
+  padding-top: 5px;
+  color: #999
+}
+
+/* Pin Delete & Trash Button */
+.pin .actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .clearfix:before, .clearfix:after { content: ""; display: table; }

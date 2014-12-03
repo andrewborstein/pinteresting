@@ -23,39 +23,50 @@
       <div class="panel panel-default">
 
         <div class="panel-header">
-          <!-- link to show pin, wrapped around element -->
-          <%= link_to pin do %>
-            <!-- <img> using pin image thumbnail -->
-            <%= image_tag pin.image.url, class: 'center-block img-responsive' %>
-          <% end %>
-        </div>
+          <div class="img">
+
+            <!-- link to show pin, wrapped around... -->
+            <%= link_to pin, title: 'View Pin' do %>
+              
+              <!-- the pin image -->
+              <%= image_tag pin.image.url, class: 'center-block img-responsive' %>
+
+            <% end %><!-- /link to show pin -->
+              
+            <!-- Current users can only Edit or Delete their own pins -->
+            <% if pin.user == current_user %>
+              <div class="actions">
+                  <div class="btn-group btn-group-xs">
+                      <!-- link to edit pin -->
+                      <%= link_to edit_pin_path(pin), title: 'Edit Pin', class: 'btn btn-default' do %>
+                        <i class="fa fa-pencil"></i>
+                      <% end %> 
+                      <!-- link to delete pin, with necessary method, and confirmation dialog -->
+                      <%= link_to pin, title: 'Delete Pin', method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' do %>
+                        <i class="fa fa-trash"></i> 
+                      <% end %>
+                  </div>
+              </div>
+            <% end %><!-- /current user -->
+
+            
+
+          </div><!-- /.img -->
+        </div><!-- /.panel-header -->
 
         <div class="panel-body">
           <div class="desc">
             <!-- Pin description -->
             <%= pin.description %>
           </div>
-        </div>
-        
-        <div class="panel-footer">
-          <div class="col-xs-12">
-            <div class="row user">
+          <div class="user">
+            <%= mail_to pin.user.email do %>  
               <!-- User's email address, if pin has user assigned -->
-              Posted By: User <%= pin.user.id if pin.user %>
-            </div>  
+              @user<%= pin.user.id if pin.user %>
+            <% end %>
           </div>
-          <div class="row actions">
-            <div class="btn-group">
-              <%= link_to 'Show', pin, class: "btn btn-default btn-sm" %>
-                <!-- Users can only Edit or Delete their own pins -->
-                <% if pin.user == current_user %>
-                  <!-- link to edit pin -->
-                  <%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-default btn-sm" %>
-                  <!-- link to delete pin, with necessary method, and confirmation dialog -->
-                  <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-sm" %>
-              <% end %>
-            </div>
-          </div>
+         
+          
         </div>
 
       </div>

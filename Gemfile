@@ -14,6 +14,7 @@ gem 'devise', '~> 3.4.1'
 gem "paperclip", '~> 4.2'
 gem 'aws-sdk', '~> 1.59.0'
 gem 'masonry-rails', '~> 0.2.4'
+gem 'font-awesome-rails', '~> 4.2.0'
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
