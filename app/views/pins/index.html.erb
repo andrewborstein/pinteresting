@@ -60,13 +60,17 @@
             <%= pin.description %>
           </div>
           <div class="user">
-            <%= mail_to pin.user.email do %>  
-              <!-- User's email address, if pin has user assigned -->
-              @user<%= pin.user.id if pin.user %>
-            <% end %>
+            Posted by 
+              <!-- if pin belongs to you... -->
+              <% if pin.user == current_user %>
+                you!
+              <!-- otherwise... -->
+              <% else %>
+                <%= mail_to pin.user.email do %>  
+                  @user<%= pin.user.id if pin.user %>
+                <% end %>
+              <% end %>
           </div>
-         
-          
         </div>
 
       </div>

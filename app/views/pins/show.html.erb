@@ -24,19 +24,25 @@
 				</div>
 			</div>
 
-			<div class="panel-body">	
-				<!-- show description -->
-				<div class="desc">
-					<h2 class="text-center">
-					  <%= @pin.description %>
-					</h2>
-					<div class="user">
-						<%= mail_to @pin.user.email do %>
-							<h4>@user<%= @pin.user.id %></h4>
-						<% end %>
-					<div>
-				</div>
-			</div>
+			<div class="panel-body">
+	          <div class="desc">
+	            <!-- Pin description -->
+	            <h2><%= @pin.description %></h2>
+	          </div>
+	          <div class="user">
+	            <h5>Posted by 
+	              <!-- if pin belongs to you... -->
+	              <% if @pin.user == current_user %>
+	                you!
+	              <!-- otherwise... -->
+	              <% else %>
+	                <%= mail_to @pin.user.email do %>  
+	                  @user<%= @pin.user.id if @pin.user %>
+	                <% end %>
+	              <% end %>
+	             </h5>
+	          </div>
+	        </div>
 
 		</div>
 	</div>
