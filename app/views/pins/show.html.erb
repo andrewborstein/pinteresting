@@ -30,6 +30,11 @@
 					<h2 class="text-center">
 					  <%= @pin.description %>
 					</h2>
+					<div class="user">
+						<%= mail_to @pin.user.email do %>
+							<h4>@user<%= @pin.user.id %></h4>
+						<% end %>
+					<div>
 				</div>
 			</div>
 
