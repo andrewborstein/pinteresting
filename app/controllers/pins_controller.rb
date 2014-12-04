@@ -4,7 +4,7 @@ class PinsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @pins = Pin.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 12)
+    @pins = Pin.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 8)
   end
 
   def show
@@ -28,7 +28,7 @@ class PinsController < ApplicationController
 
   def update
     if @pin.update(pin_params)
-      redirect_to @pin
+      redirect_to @pin, notice: 'Pin was successfully updated.'
     else
       render action: 'edit'
     end
