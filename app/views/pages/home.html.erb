@@ -1,9 +1,10 @@
 <div class="jumbotron text-center">
-	<h1>Welcome to my app!</h1>
 	
-	<!-- If user is signed in -->
-	<% if user_signed_in? %> 
-		<h3>You are one swell user. </h3> 
+	
+	<h1>Welcome to my app!</h1>
+		<!-- If user is signed in, and user name has been added, show it -->		
+		<% if user_signed_in? %>
+			<h3>Thanks for joinging us<% if current_user.name.present? %>, <%= current_user.name %><% end %>.</h3> 
 
 	<!-- Otherwise... login or sign up -->
 	<% else %>
